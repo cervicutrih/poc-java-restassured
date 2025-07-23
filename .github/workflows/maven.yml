@@ -26,7 +26,14 @@ jobs:
           distribution: 'temurin'
 
       - name: Run tests and generate results
-        run: mvn clean test
+        run: mvn clean test -Dallure.results.directory=target/allure-results -X
+
+      - name: Debug - List files after test
+        run: |
+          echo "Conteúdo da pasta target:"
+          ls -la target
+          echo "Conteúdo da pasta target/allure-results:"
+          ls -la target/allure-results || echo "Diretório não encontrado"
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
@@ -36,7 +43,7 @@ jobs:
           keep_reports: 10
 
       - name: Upload Allure report as GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: allure-history
 
