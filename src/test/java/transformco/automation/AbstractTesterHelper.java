@@ -1,6 +1,7 @@
 package transformco.automation;
 
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
 import transformco.config.ConfigProperties;
@@ -10,18 +11,20 @@ import static io.restassured.RestAssured.*;
 
 public class AbstractTesterHelper extends GenericTestsUtils {
     protected static String token;
-    private static final String jsonBody = "{ \"email\": \"test1h@test.com\", \"password\": \"test\" }";
+    private static final String jsonBody = String.format("{ \"email\": \"%s\", \"password\": \"%s\" }",
+        ConfigProperties.getClientId(), ConfigProperties.getClientPass());
 
     @BeforeAll
     public static void setUpToken() {
-        token = given()
+        Response response = given()
                     .contentType(ContentType.JSON)
                     .header("requestTraceId",
                         "generatingAutomationToken")
                     .body(jsonBody)
                 .when()
-                    .post(ConfigProperties.getTokenUri())
-                .then()
+                    .post(ConfigProperties.getTokenUri());
+        
+        token = response.then()
                     .extract()
                         .path("authorization");
     }
