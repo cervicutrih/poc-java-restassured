@@ -3,10 +3,10 @@ package transformco.config;
 public class ConfigProperties {
 
     private static final String CLIENT_ID =
-            System.getenv().getOrDefault("email", "");
+            System.getenv().getOrDefault("email", "test1h@test.com");
 
     private static final String CLIENT_PASS =
-            System.getenv().getOrDefault("password", "");
+            System.getenv().getOrDefault("password", "test");
 
     private static final String BASE_URI =
             System.getenv().getOrDefault("BASE_URI", "https://serverest.dev");
