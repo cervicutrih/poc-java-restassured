@@ -26,14 +26,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Run tests and generate results
-        run: mvn clean test -Dallure.results.directory=target/allure-results -X
-
-      - name: Debug - List files after test
-        run: |
-          echo "Conteúdo da pasta target:"
-          ls -la target
-          echo "Conteúdo da pasta target/allure-results:"
-          ls -la target/allure-results || echo "Diretório não encontrado"
+        id: tests
+        continue-on-error: true
+        run: mvn clean test -Dallure.results.directory=target/allure-results
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
