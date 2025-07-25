@@ -46,7 +46,7 @@ jobs:
       - name: Upload Allure report as GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: allure-report
+          path: allure-history
 
   deploy:
     needs: build
