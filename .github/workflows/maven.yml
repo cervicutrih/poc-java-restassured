@@ -14,6 +14,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: github-pages
+    env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_PASS: ${{ secrets.CLIENT_PASS }}
+      BASE_URI: ${{ secrets.BASE_URI }}
+      TOKEN_URI: ${{ secrets.TOKEN_URI }}
 
     steps:
       - name: Checkout code

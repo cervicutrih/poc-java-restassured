@@ -3,19 +3,19 @@ package transformco.config;
 public class ConfigProperties {
 
     private static final String CLIENT_ID =
-            System.getenv().getOrDefault("email", "test1h@test.com");
+            System.getProperty("CLIENT_ID", System.getenv().getOrDefault("CLIENT_ID", ""));
 
     private static final String CLIENT_PASS =
-            System.getenv().getOrDefault("password", "test");
+            System.getProperty("CLIENT_PASS", System.getenv().getOrDefault("CLIENT_PASS", ""));
 
     private static final String BASE_URI =
-            System.getenv().getOrDefault("BASE_URI", "https://serverest.dev");
+            System.getProperty("BASE_URI", System.getenv().getOrDefault("BASE_URI", ""));
 
 //    private static final String BASE_PATH =
 //            System.getenv().getOrDefault("BASE_PATH", "/api/xpto");
 
     private static final String TOKEN_URI =
-            System.getenv().getOrDefault("TOKEN_URI", "https://serverest.dev/login");
+            System.getProperty("TOKEN_URI", System.getenv().getOrDefault("TOKEN_URI", ""));
 
 
     public static String getClientId() {
